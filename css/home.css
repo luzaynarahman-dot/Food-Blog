@@ -869,7 +869,7 @@ body {
 
 
 /* Responsive */
-@media (max-width: 850px) {
+@media (max-width: 768px) {
   .cuisine-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1331,7 +1331,7 @@ body {
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 850px) {
+@media (max-width: 768px) {
     .card-item {
         flex: 0 0 calc(50% - 15px); /* ট্যাবলেটে ২টি কার্ড */
     }
