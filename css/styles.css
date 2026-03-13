@@ -1,1 +1,169 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  font-family: "poppins", sans-serif ;
+}
+
+/* css for login ui */
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                  url('../food-blog-img/login-bg.jpg');
+
+  
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+.wrapper{
+  background:transparent; 
+  backdrop-filter: blur(6px);
+  border:2px solid rgba(205,205,205,.3);
+  color:white;
+  width:90%;
+  max-width :400px;
+  border-radius: 10px;
+  padding:30px 40px;
+  animation: fadeIn 1s ease-out;
+}
+.wrapper h1{
+  text-align: center
+}
+
+.wrapper .input-box{
+  position:relative;
+  width:100%;
+  height:50px;
+  margin: 30px 0;
+}
+.input-box input{
+  width:100%;
+  height:100%;
+  background-color: transparent ;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 245, 205, .2);
+  border-radius: 40px;
+  color:white;
+  padding:20px 27px 20px 27px;
+  font-size: 17px;
+}
+.input-box input::placeholder{
+  color:white
+  
+}
+.input-box i{
+  position:absolute ;
+  right:20px;
+  top:50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.input-box input:focus {
+  border: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: 0.3s;
+}
+
+.input-box input:focus + i {
+  color: #fff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+
+.rem-for{
+  display: flex;
+  justify-content: space-between;
+  margin:-15px 0 15px;
+}
+
+.rem-for label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.rem-for label input{
+  accent-color:#333;
+  width:16px;
+  height:16px;
+  cursor:pointer;
+  margin-right:8px;
+}
+.rem-for a{
+  text-decoration: none;
+  color:white;
+}
+
+.rem-for:focus {
+  outline: none; 
+}
+
+
+.register{
+  color:white;
+  margin-top:15px;
+  text-align: center;
+}
+.register a{
+  text-decoration: none;
+  color:white;
+  font-weight: 600;
+}
+
+.rem-for a:hover, .register a:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); 
+  text-decoration: underline;
+}
+
+.wrapper .btn{
+  width:100%;
+  height:45px;
+  background-color: white;
+  border: none;
+  outline:none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+  cursor: pointer;
+  font-size:16px;
+  color:#333;
+  font-weight: 600;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+
+.wrapper .btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-3px); 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper .btn:active {
+  transform: translateY(0); 
+}
+
+
+/* --- Animation Keyframes --- */
+@keyframes fadeIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0);   
+  }
+}
+
+/* css for login ui end */
+
 
