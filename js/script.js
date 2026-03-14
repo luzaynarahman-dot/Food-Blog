@@ -1,50 +1,4 @@
-// --- Helper Function for Safety ---
-// Eta check korbe element-ta page-e ase kina, thakle value nibe
-const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : null;
-
-// --- Login Functionality ---
-function login() {
-    const usernameInput = document.querySelectorAll('input')[0];
-    const passwordInput = document.getElementById('password');
-
-    // Check kora hocche element gula page-e exist kore kina
-    if (usernameInput && passwordInput) {
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-
-        if (username !== "" && password !== "") {
-            alert("Login Successful!");
-            window.location.href = "dashboard.html";
-        } else {
-            alert("Please fill in both fields!");
-        }
-    }
-}
-
-// --- Registration Functionality ---
-function registerUser() {
-    const inputs = document.querySelectorAll('.input-box input');
-    const checkbox = document.querySelector('input[type="checkbox"]');
-    
-    // Element thaklei shudhu logic cholbe
-    if (inputs.length > 0 && checkbox) {
-        let allFilled = true;
-        inputs.forEach(input => {
-            if (input.value === "") allFilled = false;
-        });
-
-        if (allFilled && checkbox.checked) {
-            alert("Account Created Successfully! Now you can Login.");
-            window.location.href = "login.html";
-        } else if (!checkbox.checked && allFilled) {
-            alert("Please agree to the terms and conditions!");
-        } else {
-            alert("Please fill in all the required fields!");
-        }
-    }
-}
-
-// --- Observer logic (Ager motoi thakbe) ---
+// ===== INTERSECTION OBSERVER FOR SCROLL ANIMATIONS =====
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -59,36 +13,35 @@ document.querySelectorAll('.scroll-section').forEach(section => {
     observer.observe(section);
 });
 
-// --- Cuisine Tabs Logic (Cleaned) ---
+// ===== CUISINE TABS FUNCTIONALITY =====
 const tabs = document.querySelectorAll(".tab");
 const cards = document.querySelectorAll(".card");
 
-tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        // Active class toggle
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
+if (tabs.length > 0 && cards.length > 0) {
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove("active"));
+            // Add active class to clicked tab
+            tab.classList.add("active");
 
-        const selectedCuisine = tab.textContent.toLowerCase();
+            const selectedCuisine = tab.textContent.toLowerCase().trim();
 
-        cards.forEach(card => {
-            // dataset check kora
-            if(card.dataset.cuisine === selectedCuisine) {
-                card.classList.add("show");
-            } else {
-                card.classList.remove("show");
-            }
+            cards.forEach(card => {
+                if (card.dataset.cuisine === selectedCuisine) {
+                    card.classList.add("show");
+                } else {
+                    card.classList.remove("show");
+                }
+            });
         });
     });
-});
+}
 
-// Prottekta card-e automatic icon boro ar sndr kore boshano
-const allCards = document.querySelectorAll('.card');
+// ===== ADD INTERACTION BUTTONS TO CUISINE CARDS =====
+const allCards = document.querySelectorAll('.cuisine-cards .card');
 
 allCards.forEach(card => {
-    const cardInfo = card.querySelector('.card-info');
-    
-    // Check korbe jate bar bar icon add na hoy
     if (!card.querySelector('.card-interactions')) {
         const btnHTML = `
             <div class="card-interactions">
@@ -100,6 +53,75 @@ allCards.forEach(card => {
                 </button>
             </div>
         `;
-        cardInfo.insertAdjacentHTML('beforeend', btnHTML);
+        card.querySelector('.card-info').insertAdjacentHTML('beforeend', btnHTML);
     }
 });
+
+// ===== LOGIN FUNCTIONALITY (if on login page) =====
+function login() {
+    const usernameInput = document.querySelector('input[type="text"], input[type="email"]');
+    const passwordInput = document.getElementById('password');
+
+    if (usernameInput && passwordInput) {
+        if (usernameInput.value && passwordInput.value) {
+            alert("Login Successful!");
+            window.location.href = "dashboard.html";
+        } else {
+            alert("Please fill in both fields!");
+        }
+    }
+}
+
+// ===== REGISTER FUNCTIONALITY (if on register page) =====
+function registerUser() {
+    const inputs = document.querySelectorAll('.input-box input');
+    const checkbox = document.querySelector('input[type="checkbox"]');
+    
+    if (inputs.length > 0 && checkbox) {
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (!input.value) allFilled = false;
+        });
+
+        if (allFilled && checkbox.checked) {
+            alert("Account Created Successfully!");
+            window.location.href = "login.html";
+        } else if (!checkbox.checked && allFilled) {
+            alert("Please agree to the terms and conditions!");
+        } else {
+            alert("Please fill in all the required fields!");
+        }
+    }
+}
+
+// ===== SEARCH FUNCTIONALITY =====
+const searchBtn = document.querySelector('.search-btn');
+const searchInput = document.querySelector('.search-input');
+
+if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', () => {
+        if (searchInput.value.trim()) {
+            alert(`Searching for: ${searchInput.value}`);
+            // Add actual search logic here
+        } else {
+            alert('Please enter something to search');
+        }
+    });
+}
+
+// ===== NEWSLETTER SUBSCRIBE =====
+const subscribeBtn = document.querySelector('.subscribe-btn');
+const emailInput = document.querySelector('.newsletter-box input');
+
+if (subscribeBtn && emailInput) {
+    subscribeBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        if (email && email.includes('@') && email.includes('.')) {
+            alert('Thanks for subscribing! 🎉');
+            emailInput.value = '';
+        } else {
+            alert('Please enter a valid email address');
+        }
+    });
+}
+    
